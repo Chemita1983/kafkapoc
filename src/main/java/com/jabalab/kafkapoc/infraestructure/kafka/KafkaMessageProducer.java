@@ -1,6 +1,6 @@
-package com.jabalab.kafkapoc.infraestructure;
+package com.jabalab.kafkapoc.infraestructure.kafka;
 
-import com.jabalab.kafkapoc.domain.port.MessageProducertPort;
+import com.jabalab.kafkapoc.domain.port.output.MessageProducertPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,7 +17,7 @@ public class KafkaMessageProducer implements MessageProducertPort {
     @Override
     public void sendMessage(String message) {
         kafkaTemplate.send(MESSAGE_TOPIC, message);
-        System.out.println("Message " + message + " has been sucessfully sent to the topic: " + MESSAGE_TOPIC);
+        log.info("Message {} has been successfully sent to the topic: " + MESSAGE_TOPIC, message);
     }
 }
 

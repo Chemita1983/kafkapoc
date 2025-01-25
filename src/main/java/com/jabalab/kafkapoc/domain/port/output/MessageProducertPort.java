@@ -1,4 +1,4 @@
-package com.jabalab.kafkapoc.domain.port;
+package com.jabalab.kafkapoc.domain.port.output;
 
 public interface MessageProducertPort {
 

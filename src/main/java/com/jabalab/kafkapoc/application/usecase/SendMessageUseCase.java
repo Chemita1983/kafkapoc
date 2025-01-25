@@ -1,6 +1,6 @@
 package com.jabalab.kafkapoc.application.usecase;
 
-import com.jabalab.kafkapoc.domain.port.MessageProducertPort;
+import com.jabalab.kafkapoc.domain.port.output.MessageProducertPort;
 import com.jabalab.kafkapoc.domain.port.usecase.SendMessageUsecasePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

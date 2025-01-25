@@ -1,5 +1,6 @@
-package com.jabalab.kafkapoc.infraestructure;
+package com.jabalab.kafkapoc.infraestructure.kafka;
 
+import com.jabalab.kafkapoc.domain.port.input.MessageConsumerPort;
 import com.jabalab.kafkapoc.domain.port.usecase.PrintMessageUsecasePort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,19 +11,23 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class KafkaMessageConsumer {
+public class KafkaMessageConsumer implements MessageConsumerPort {
 
     private final PrintMessageUsecasePort printMessageUsecase;
 
     @KafkaListener(topics = "message-topic")
     public void listen(ConsumerRecord<String, String> record) {
         try {
-            String message = record.value();
-            printMessageUsecase.logMessage(message);
-
+            listen(record.value());
         } catch (Exception e) {
             log.error("Error procesando el mensaje: {}", e.getMessage());
         }
+    }
+
+    @Override
+    public void listen(String message) {
+        printMessageUsecase.logMessage(message);
+
     }
 }
 
